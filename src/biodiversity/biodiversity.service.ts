@@ -1,5 +1,5 @@
 import { readFile } from 'node:fs/promises';
-import path from 'node:path';
+import { resolve } from 'node:path';
 
 import { Injectable } from '@nestjs/common';
 
@@ -8,7 +8,7 @@ type DataRecord = Record<string, string>;
 @Injectable()
 export class BiodiversityService {
   async getData(): Promise<Array<DataRecord>> {
-    const file = path.resolve(__dirname, '../../data/s7d7-7ktr.json');
+    const file = resolve(__dirname, '../../data/s7d7-7ktr.json');
     const read = await readFile(file, { encoding: 'utf8' });
 
     return JSON.parse(read);
