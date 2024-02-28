@@ -5,8 +5,18 @@
 directive @upper on FIELD_DEFINITION
 
 type Biodiversity {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  category: String!
+  common_name: String!
+  county: String!
+  distribution_status: String!
+  federal_listing_status: String!
+  global_conservation_rank: String!
+  ny_listing_status: String!
+  scientific_name: String!
+  state_conservation_rank: String!
+  taxonomic_group: String!
+  taxonomic_subgroup: String!
+  year_last_documented: String!
 }
 
 type Query {
