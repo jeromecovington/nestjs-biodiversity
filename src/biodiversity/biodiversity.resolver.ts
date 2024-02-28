@@ -6,7 +6,7 @@ import { Biodiversity } from './entities/biodiversity.entity';
 export class BiodiversityResolver {
   constructor(private readonly biodiversityService: BiodiversityService) {}
 
-  @Query(() => [Biodiversity], { name: 'biodiversity' })
+  @Query(() => [Biodiversity], { name: 'findAll' })
   async findAll(
     @Args('category', { nullable: true }) category?: string,
     @Args('common_name', { nullable: true }) common_name?: string,
@@ -44,7 +44,7 @@ export class BiodiversityResolver {
     return result;
   }
 
-  @Query(() => Biodiversity, { name: 'biodiversity' })
+  @Query(() => Biodiversity, { name: 'findOne' })
   findOne(@Args('id', { type: () => Int }) id: number) {
     return this.biodiversityService.findOne(id);
   }
