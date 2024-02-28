@@ -7,7 +7,7 @@ export class BiodiversityResolver {
   constructor(private readonly biodiversityService: BiodiversityService) {}
 
   @Query(() => [Biodiversity], { name: 'biodiversity' })
-  findAll(
+  async findAll(
     @Args('category', { nullable: true }) category?: string,
     @Args('common_name', { nullable: true }) common_name?: string,
     @Args('county', { nullable: true }) county?: string,
@@ -26,7 +26,7 @@ export class BiodiversityResolver {
     @Args('year_last_documented', { nullable: true })
     year_last_documented?: string,
   ) {
-    return this.biodiversityService.findAll(
+    const result = await this.biodiversityService.findAll(
       category,
       common_name,
       county,
@@ -40,6 +40,8 @@ export class BiodiversityResolver {
       taxonomic_subgroup,
       year_last_documented,
     );
+
+    return result;
   }
 
   @Query(() => Biodiversity, { name: 'biodiversity' })
