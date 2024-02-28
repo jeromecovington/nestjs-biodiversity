@@ -1,7 +1,5 @@
-import fs from 'fs';
-import path from 'path';
-
-const { readFile } = fs.promises;
+import { readFile } from 'node:fs/promises';
+import path from 'node:path';
 
 import { Injectable } from '@nestjs/common';
 
