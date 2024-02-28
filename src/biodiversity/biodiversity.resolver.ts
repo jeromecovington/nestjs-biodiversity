@@ -1,37 +1,10 @@
-import fs from 'fs';
-import path from 'path';
-
-const { readFile } = fs.promises;
-
 import { Resolver, Query, Args, Int } from '@nestjs/graphql';
 import { BiodiversityService } from './biodiversity.service';
 import { Biodiversity } from './entities/biodiversity.entity';
 
-const allFields: string[] = [
-  'category',
-  'common_name',
-  'county',
-  'distribution_status',
-  'federal_listing_status',
-  'global_conservation_rank',
-  'ny_listing_status',
-  'scientific_name',
-  'state_conservation_rank',
-  'taxonomic_group',
-  'taxonomic_subgroup',
-  'year_last_documented',
-];
-
 @Resolver(() => Biodiversity)
 export class BiodiversityResolver {
   constructor(private readonly biodiversityService: BiodiversityService) {}
-
-  async getData() {
-    const file = path.resolve(__dirname, './data/s7d7-7ktr.json');
-    const read = await readFile(file, { encoding: 'utf8' });
-
-    return JSON.parse(read);
-  }
 
   @Query(() => [Biodiversity], { name: 'biodiversity' })
   findAll(

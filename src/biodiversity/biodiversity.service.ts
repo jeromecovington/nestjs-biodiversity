@@ -1,7 +1,19 @@
+import fs from 'fs';
+import path from 'path';
+
+const { readFile } = fs.promises;
+
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class BiodiversityService {
+  async getData() {
+    const file = path.resolve(__dirname, './data/s7d7-7ktr.json');
+    const read = await readFile(file, { encoding: 'utf8' });
+
+    return JSON.parse(read);
+  }
+
   findAll(
     category?: string,
     common_name?: string,
