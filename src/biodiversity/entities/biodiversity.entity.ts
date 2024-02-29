@@ -3,6 +3,9 @@ import { ObjectType, Field } from '@nestjs/graphql';
 @ObjectType()
 export class Biodiversity {
   @Field()
+  id: string;
+
+  @Field()
   category: string;
 
   @Field()

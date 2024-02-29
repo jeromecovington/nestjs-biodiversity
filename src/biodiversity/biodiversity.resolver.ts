@@ -45,7 +45,7 @@ export class BiodiversityResolver {
   }
 
   @Query(() => Biodiversity, { name: 'findOne' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
-    return this.biodiversityService.findOne(id);
+  async findOne(@Args('id') id: string) {
+    return await this.biodiversityService.findOne(id);
   }
 }

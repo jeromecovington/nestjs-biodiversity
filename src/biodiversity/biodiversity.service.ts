@@ -2,6 +2,7 @@ import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 
 import { Injectable } from '@nestjs/common';
+import { fromId, toId } from 'src/util/strings';
 
 type DataRecord = Record<string, string>;
 
@@ -58,7 +59,13 @@ export class BiodiversityService {
       }
 
       if (!doesMatch.includes(false)) {
-        acc.push(item);
+        acc.push({
+          ...item,
+          id: toId({
+            county: item.county,
+            scientific_name: item.scientific_name,
+          }),
+        });
       }
 
       return acc;
@@ -67,7 +74,14 @@ export class BiodiversityService {
     return result;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} biodiversity`;
+  async findOne(id: string) {
+    const json = await this.getData();
+    const { county, scientific_name } = fromId(id);
+    const found = json.find(
+      (item) =>
+        item.county === county && item.scientific_name === scientific_name,
+    );
+
+    return { id, ...found };
   }
 }
