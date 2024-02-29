@@ -2,6 +2,7 @@ import { resolve } from 'node:path';
 import { Database } from 'sqlite3';
 import { open } from 'sqlite';
 import { mapRowFields } from './fields';
+import { fromId } from './strings';
 
 type Parameters = {
   category?: string;
@@ -133,6 +134,26 @@ export const findAll = async ({
     whereParams,
   );
   const mapped = result.map(mapRowFields);
+
+  return mapped;
+};
+
+export const findOne = async (id: string) => {
+  const db = await open({
+    filename: database,
+    driver: Database,
+  });
+  const { county, scientific_name } = fromId(id);
+  const result = await db.get(
+    `SELECT * FROM biodiversity
+     WHERE County = :county AND "Scientific Name" = :scientific_name
+    `,
+    {
+      ':county': county,
+      ':scientific_name': scientific_name,
+    },
+  );
+  const [mapped] = [result].map(mapRowFields);
 
   return mapped;
 };

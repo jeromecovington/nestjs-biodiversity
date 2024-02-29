@@ -2,8 +2,7 @@ import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 
 import { Injectable } from '@nestjs/common';
-import { fromId, toId } from 'src/util/strings';
-import { findAll } from 'src/util/db';
+import { findAll, findOne } from 'src/util/db';
 
 type DataRecord = Record<string, string>;
 
@@ -49,13 +48,8 @@ export class BiodiversityService {
   }
 
   async findOne(id: string) {
-    const json = await this.getData();
-    const { county, scientific_name } = fromId(id);
-    const found = json.find(
-      (item) =>
-        item.county === county && item.scientific_name === scientific_name,
-    );
+    const result = await findOne(id);
 
-    return { id, ...found };
+    return result;
   }
 }
