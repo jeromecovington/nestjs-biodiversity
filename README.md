@@ -13,7 +13,7 @@ $ yarn install
 ## Preparing the database
 
 1. Navigate to the open data set at [Biodiversity by County - Distribution of Animals, Plants and Natural Communities](https://catalog.data.gov/dataset/biodiversity-by-county-distribution-of-animals-plants-and-natural-communities) and download the CSV file to the `data/` directory of this project.
-2. Populate the SQLite database by running `yarn run migrate`.
+2. Populate the SQLite database by running `yarn run migrate:data`.
 
 ## Running the app
 
