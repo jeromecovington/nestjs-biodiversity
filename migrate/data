@@ -1,0 +1,2 @@
+.mode csv
+.import data/Biodiversity_by_County_-_Distribution_of_Animals__Plants_and_Natural_Communities.csv biodiversity

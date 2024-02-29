@@ -2,7 +2,7 @@ import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 
 import { Injectable } from '@nestjs/common';
-import { fromId, toId } from 'src/util/strings';
+import { findAll, findOne } from 'src/util/db';
 
 type DataRecord = Record<string, string>;
 
@@ -29,8 +29,7 @@ export class BiodiversityService {
     taxonomic_subgroup?: string,
     year_last_documented?: string,
   ) {
-    const json = await this.getData();
-    const allArgs = {
+    const result = await findAll({
       category,
       common_name,
       county,
@@ -43,45 +42,14 @@ export class BiodiversityService {
       taxonomic_group,
       taxonomic_subgroup,
       year_last_documented,
-    };
-
-    const result = json.reduce((acc: DataRecord[], item) => {
-      const doesMatch = [];
-
-      for (const [key, value] of Object.entries(allArgs)) {
-        if (typeof value === 'undefined') {
-          doesMatch.push(null);
-        } else if (item[key] === value) {
-          doesMatch.push(true);
-        } else if (item[key] !== value) {
-          doesMatch.push(false);
-        }
-      }
-
-      if (!doesMatch.includes(false)) {
-        acc.push({
-          ...item,
-          id: toId({
-            county: item.county,
-            scientific_name: item.scientific_name,
-          }),
-        });
-      }
-
-      return acc;
-    }, []);
+    });
 
     return result;
   }
 
   async findOne(id: string) {
-    const json = await this.getData();
-    const { county, scientific_name } = fromId(id);
-    const found = json.find(
-      (item) =>
-        item.county === county && item.scientific_name === scientific_name,
-    );
+    const result = await findOne(id);
 
-    return { id, ...found };
+    return result;
   }
 }
