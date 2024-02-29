@@ -16,6 +16,9 @@ describe('App (e2e)', () => {
   });
 
   it('/graphql (GET)', () => {
-    return request(app.getHttpServer()).get('/').expect(200);
+    return request(app.getHttpServer())
+      .post('/graphql')
+      .send({ query: '{ findAll { id county scientific_name } }' })
+      .expect(200);
   });
 });
