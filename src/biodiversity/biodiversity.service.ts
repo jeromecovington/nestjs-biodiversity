@@ -30,8 +30,20 @@ export class BiodiversityService {
     taxonomic_subgroup?: string,
     year_last_documented?: string,
   ) {
-    // TODO: Accept args.
-    const result = await findAll();
+    const result = await findAll({
+      category,
+      common_name,
+      county,
+      distribution_status,
+      federal_listing_status,
+      global_conservation_rank,
+      ny_listing_status,
+      scientific_name,
+      state_conservation_rank,
+      taxonomic_group,
+      taxonomic_subgroup,
+      year_last_documented,
+    });
 
     return result;
   }
