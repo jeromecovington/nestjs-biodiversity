@@ -28,6 +28,45 @@ $ yarn run start:dev
 $ yarn run start:prod
 ```
 
+## Using the service
+
+One the database has been migrated and the service has been started, visit
+http://localhost:3000/graphql in the browser to interact with the GraphiQL
+Playground, or use the endpoint for your front end app.
+
+### Example queries
+
+```graphql
+query {
+  findAll(county: "Albany", category: "Plant") {
+    id
+    county
+    scientific_name
+    year_last_documented
+  }
+}
+```
+
+```graphql
+query {
+  findOne(id: "QWxiYW55OkxpdGhvYmF0ZXMgcGFsdXN0cmlz") {
+    id
+    category
+    common_name
+    county
+    distribution_status
+    federal_listing_status
+    global_conservation_rank
+    ny_listing_status
+    scientific_name
+    state_conservation_rank
+    taxonomic_group
+    taxonomic_subgroup
+    year_last_documented
+  }
+}
+```
+
 ## Test
 
 ```bash
