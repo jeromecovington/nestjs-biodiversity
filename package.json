@@ -1,9 +1,8 @@
 {
   "name": "nestjs-biodiversity",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "",
-  "author": "",
-  "private": true,
+  "author": "Jerome T.K. Covington",
   "license": "UNLICENSED",
   "scripts": {
     "build": "nest build",
