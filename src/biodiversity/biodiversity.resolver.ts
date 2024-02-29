@@ -1,4 +1,4 @@
-import { Resolver, Query, Args, Int } from '@nestjs/graphql';
+import { Resolver, Query, Args } from '@nestjs/graphql';
 import { BiodiversityService } from './biodiversity.service';
 import { Biodiversity } from './entities/biodiversity.entity';
 
