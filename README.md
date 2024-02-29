@@ -33,3 +33,16 @@ $ yarn run start:prod
 One the database has been migrated and the service has been started, visit
 http://localhost:3000/graphql in the browser to interact with the GraphiQL
 Playground, or use the endpoint for your front end app.
+
+## Test
+
+```bash
+# unit tests
+$ yarn run test
+
+# e2e tests
+$ yarn run test:e2e
+
+# test coverage
+$ yarn run test:cov
+```
