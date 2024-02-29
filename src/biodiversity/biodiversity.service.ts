@@ -3,6 +3,7 @@ import { resolve } from 'node:path';
 
 import { Injectable } from '@nestjs/common';
 import { fromId, toId } from 'src/util/strings';
+import { findAll } from 'src/util/db';
 
 type DataRecord = Record<string, string>;
 
@@ -29,47 +30,8 @@ export class BiodiversityService {
     taxonomic_subgroup?: string,
     year_last_documented?: string,
   ) {
-    const json = await this.getData();
-    const allArgs = {
-      category,
-      common_name,
-      county,
-      distribution_status,
-      federal_listing_status,
-      global_conservation_rank,
-      ny_listing_status,
-      scientific_name,
-      state_conservation_rank,
-      taxonomic_group,
-      taxonomic_subgroup,
-      year_last_documented,
-    };
-
-    const result = json.reduce((acc: DataRecord[], item) => {
-      const doesMatch = [];
-
-      for (const [key, value] of Object.entries(allArgs)) {
-        if (typeof value === 'undefined') {
-          doesMatch.push(null);
-        } else if (item[key] === value) {
-          doesMatch.push(true);
-        } else if (item[key] !== value) {
-          doesMatch.push(false);
-        }
-      }
-
-      if (!doesMatch.includes(false)) {
-        acc.push({
-          ...item,
-          id: toId({
-            county: item.county,
-            scientific_name: item.scientific_name,
-          }),
-        });
-      }
-
-      return acc;
-    }, []);
+    // TODO: Accept args.
+    const result = await findAll();
 
     return result;
   }
