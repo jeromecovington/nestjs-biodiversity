@@ -157,7 +157,6 @@ export const findOne = async (id: string) => {
       ':scientific_name': scientific_name,
     },
   );
-  const [mapped] = [result].map(mapRowFields);
 
-  return mapped;
+  return mapRowFields(result);
 };
