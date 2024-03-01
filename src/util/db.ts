@@ -36,60 +36,64 @@ const whereClauseBuilder = ({
   year_last_documented,
 }: Parameters) => {
   let whereClause = '';
+  const whereClauseArray: Array<string> = [];
   const whereParams: Record<string, string> = {};
 
   if (category) {
-    whereClause += 'Category = :category AND ';
+    whereClauseArray.push('Category = :category');
     whereParams[':category'] = category;
   }
   if (common_name) {
-    whereClause += '"Common Name" = :common_name AND ';
+    whereClauseArray.push('"Common Name" = :common_name');
     whereParams[':common_name'] = common_name;
   }
   if (county) {
-    whereClause += 'County = :county AND ';
+    whereClauseArray.push('County = :county');
     whereParams[':county'] = county;
   }
   if (distribution_status) {
-    whereClause += '"Distribution Status" = :distribution_status AND ';
+    whereClauseArray.push('"Distribution Status" = :distribution_status');
     whereParams[':distribution_status'] = distribution_status;
   }
   if (federal_listing_status) {
-    whereClause += '"Federal Listing Status" = :federal_listing_status AND ';
+    whereClauseArray.push('"Federal Listing Status" = :federal_listing_status');
     whereParams[':federal_listing_status'] = federal_listing_status;
   }
   if (global_conservation_rank) {
-    whereClause +=
-      '"Global Conservation Rank" = :global_conservation_rank AND ';
+    whereClauseArray.push(
+      '"Global Conservation Rank" = :global_conservation_rank',
+    );
     whereParams[':global_conservation_rank'] = global_conservation_rank;
   }
   if (ny_listing_status) {
-    whereClause += '"NY Listing Status" = :ny_listing_status AND ';
+    whereClauseArray.push('"NY Listing Status" = :ny_listing_status');
     whereParams[':ny_listing_status'] = ny_listing_status;
   }
   if (scientific_name) {
-    whereClause += '"Scientific Name" = :scientific_name AND ';
+    whereClauseArray.push('"Scientific Name" = :scientific_name');
     whereParams[':scientific_name'] = scientific_name;
   }
   if (state_conservation_rank) {
-    whereClause += '"State Conservation Rank" = :state_conservation_rank AND ';
+    whereClauseArray.push(
+      '"State Conservation Rank" = :state_conservation_rank',
+    );
     whereParams[':state_conservation_rank'] = state_conservation_rank;
   }
   if (taxonomic_group) {
-    whereClause += '"Taxonomic Group" = :taxonomic_group AND ';
+    whereClauseArray.push('"Taxonomic Group" = :taxonomic_group');
     whereParams[':taxonomic_group'] = taxonomic_group;
   }
   if (taxonomic_subgroup) {
-    whereClause += '"Taxonomic Subgroup" = :taxonomic_subgroup AND ';
+    whereClauseArray.push('"Taxonomic Subgroup" = :taxonomic_subgroup');
     whereParams[':taxonomic_subgroup'] = taxonomic_subgroup;
   }
   if (year_last_documented) {
-    whereClause += '"Year Last Documented" = :year_last_documented AND ';
+    whereClauseArray.push('"Year Last Documented" = :year_last_documented');
     whereParams[':year_last_documented'] = year_last_documented;
   }
 
-  if (whereClause !== '') {
-    whereClause = 'WHERE ' + whereClause.slice(0, -5);
+  if (whereClauseArray.length) {
+    whereClause = 'WHERE ' + whereClauseArray.join(' AND ');
   }
 
   return { whereClause, whereParams };
@@ -153,7 +157,6 @@ export const findOne = async (id: string) => {
       ':scientific_name': scientific_name,
     },
   );
-  const [mapped] = [result].map(mapRowFields);
 
-  return mapped;
+  return mapRowFields(result);
 };
