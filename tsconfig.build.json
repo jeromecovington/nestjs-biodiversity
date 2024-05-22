@@ -1,5 +1,4 @@
 {
   "extends": "./tsconfig.json",
-  "include": ["src/**/*.ts", "schema.gql", "biodiversity.db"],
   "exclude": ["node_modules", "test", "dist", "**/*spec.ts"]
 }
