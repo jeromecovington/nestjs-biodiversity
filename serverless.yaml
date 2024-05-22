@@ -3,7 +3,6 @@ service: nestjs-biodiversity
 frameworkVersion: '3'
 
 plugins:
-  - serverless-jetpack
   - serverless-offline
 
 provider:
