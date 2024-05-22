@@ -19,7 +19,7 @@ type Parameters = {
   year_last_documented?: string;
 };
 
-const database = resolve(__dirname, '../biodiversity.db');
+const database = resolve(__dirname, '../../biodiversity.db');
 
 const whereClauseBuilder = ({
   category,
