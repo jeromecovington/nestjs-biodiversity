@@ -1,6 +1,6 @@
 import { configure as serverlessExpress } from '@codegenie/serverless-express';
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './src/app.module';
+import { AppModule } from './app.module';
 
 import {
   APIGatewayProxyEvent,
