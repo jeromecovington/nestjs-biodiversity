@@ -5,7 +5,7 @@
   "author": "Jerome T.K. Covington",
   "license": "UNLICENSED",
   "scripts": {
-    "build": "nest build",
+    "build": "yarn migrate:data && nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "migrate:data": "sqlite3 biodiversity.db < migrate/data",
     "start": "nest start",
