@@ -7,7 +7,7 @@
   "scripts": {
     "build": "yarn migrate:data && nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "migrate:data": "sqlite3 biodiversity.db < migrate/data",
+    "migrate:data": "sqlite3 src/biodiversity.db < migrate/data",
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",

@@ -1,5 +1,5 @@
 # database
-biodiversity.db
+/src/biodiversity.db
 
 # compiled output
 /dist
