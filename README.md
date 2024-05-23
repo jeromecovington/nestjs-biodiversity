@@ -79,3 +79,23 @@ $ yarn run test:e2e
 # test coverage
 $ yarn run test:cov
 ```
+
+## Deploying on AWS Lambda
+
+This graphql service may be deployed as an AWS Lambda using the following
+commands. (Assume AWS credentials exist for your use with the necessary
+capabilities.)
+
+```
+$ npm install -g serverless
+$ yarn serverless:deploy
+```
+
+The script will install dependencies using an AWS Linux docker image due to
+reliance on native modules. When running the script, confirm the download of
+corepack in order to enable the yarn package manager on the docker image.
+Make sure to run `yarn install` again in order to install on your local
+architecture once development resumes.
+
+You may need to login or create a free account with serverless in order to
+run the deploy script.
