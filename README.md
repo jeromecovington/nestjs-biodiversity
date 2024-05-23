@@ -91,8 +91,11 @@ $ npm install -g serverless
 $ yarn serverless:deploy
 ```
 
-NOTE: The script will install dependencies using an AWS Linux docker image due
-to reliance on native modules. When running the script, confirm the download of
+The script will install dependencies using an AWS Linux docker image due to
+reliance on native modules. When running the script, confirm the download of
 corepack in order to enable the yarn package manager on the docker image.
 Make sure to run `yarn install` again in order to install on your local
 architecture once development resumes.
+
+You may need to login or create a free account with serverless in order to
+run the deploy script.
