@@ -10,7 +10,7 @@ import { BiodiversityModule } from './biodiversity/biodiversity.module';
     BiodiversityModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
-      autoSchemaFile: 'schema.gql',
+      autoSchemaFile: true,
       installSubscriptionHandlers: true,
       buildSchemaOptions: {
         directives: [
