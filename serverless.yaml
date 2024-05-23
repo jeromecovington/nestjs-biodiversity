@@ -13,7 +13,6 @@ provider:
 functions:
   api:
     handler: dist/lambda.handler
-    url: true
     events:
       - http:
           method: ANY
