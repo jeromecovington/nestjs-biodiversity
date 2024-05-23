@@ -79,3 +79,14 @@ $ yarn run test:e2e
 # test coverage
 $ yarn run test:cov
 ```
+
+## Deploying on AWS Lambda
+
+TK
+
+```
+$ docker pull amazon/aws-lambda-nodejs
+$ docker run --platform linux/amd64 --entrypoint /bin/sh -v "$PWD":/var/task -it amazon/aws-lambda-nodejs -c "corepack enable && yarn install"
+$ npm install -g serverless
+$ serverless deploy
+```
