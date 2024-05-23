@@ -11,12 +11,9 @@ provider:
   region: us-east-1
 
 functions:
-  api:
+  graphql:
     handler: dist/lambda.handler
     events:
       - http:
           method: ANY
-          path: /
-      - http:
-          method: ANY
-          path: '{proxy+}'
+          path: graphql
